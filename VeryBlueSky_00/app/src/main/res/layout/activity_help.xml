@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_demo1"
+    android:padding="16dp"
+    tools:context=".Help">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#9F9BBC"
+        android:text="Login/Signup:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#8e88bd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="If you have an existing account, please use it with your password to enter the home page. If you are new and don't have an account, please use your email and password with at least 6 characters and repeat it in the confirm password field. When you sign up successfully, you can log in with your account and enter the home page."
+        android:textColor="#111112"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home Page:"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#8e88bd"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#111112"
+        android:text="In the home page, you have a widget. If you press it, it'll take you to track flight. You will see an ad for a flight which will take you to book flight. The previous flight button will show you the flights that you booked and finished. Book flight takes you to book flight, and track flight takes you to track flight."
+        android:layout_marginTop="5dp" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book Flight:"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#8e88bd"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#111112"
+        android:text="In this page, you'll have to select the departure and return (place and date). Optionally, you can enter your desired budget to show the flights in the price range of your budget. When you press search, it'll show you the flights that have the same values as your references. Pressing search will display a filtered list of available flights that meet your wishes. There you can sort the page or enhance it using AVA, a bot that predicts and sorts according to the chance of cancellation and price."
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previous Flights:"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#8e88bd"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#111112"
+        android:text="This page will show you the flights that you booked and ended according to the date or time of the phone."
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Track Flights:"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#8e88bd"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#111112"
+        android:text="This page will show you your flights that are booked and not ended yet."
+        android:layout_marginTop="5dp" />
+
+</LinearLayout>

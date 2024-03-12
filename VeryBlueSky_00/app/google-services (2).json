@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "278748754381",
+    "project_id": "verybluesky-c6e49",
+    "storage_bucket": "verybluesky-c6e49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278748754381:android:c9cd11253f1650c9801484",
+        "android_client_info": {
+          "package_name": "com.example.verybluesky_00"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278748754381-av1s3idg9n0tf3j10allvvgk291mkqng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPWwSkFeQJ7BOeWDoFld-7m4EwT-khfUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278748754381-av1s3idg9n0tf3j10allvvgk291mkqng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

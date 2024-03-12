@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background_demo1"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9F9BBC"
+        android:textColor="#FFFFFF"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/help_button"
+        android:layout_width="137dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#9F9BBC"
+        android:text="Help"
+        android:textColor="#FFFFFF" />
+
+    <!-- Space to separate buttons -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <!-- Log in as admin Button -->
+    <Button
+        android:id="@+id/adminLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="#9F9BBC"
+        android:text="Log in as admin"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
+
+</LinearLayout>

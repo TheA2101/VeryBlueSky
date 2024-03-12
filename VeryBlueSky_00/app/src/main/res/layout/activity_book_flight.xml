@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".BookFlight"
+    android:background="@drawable/background_demo1"
+    >
+
+    <EditText
+        android:id="@+id/from_fill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="From"
+        android:inputType="text"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"/> <!-- You can adjust the color code as needed -->
+
+
+    <EditText
+        android:id="@+id/to_fill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="To"
+        android:inputType="text"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"/>
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date:"
+        android:textSize="20sp"
+        android:textColor="#161B33"
+        android:layout_marginTop="20dp" />
+
+    <!-- ... Other layout elements ... -->
+
+    <Button
+        android:id="@+id/date_from_fill"
+        style="?android:spinnerStyle"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="openDatePicker"
+        android:text="AUG 23 2023"
+        android:textColor="#666666"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/date_to_fill"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="AUG 24 2023"
+        android:textSize="30sp"
+        android:textColor="#666666"
+        style="?android:spinnerStyle"
+        android:layout_marginTop="10dp"
+        android:onClick="openDatePicker" />
+
+    <!-- ... Other layout elements ... -->
+
+
+    <TextView
+        android:id="@+id/textViewSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Range in USD:"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/range_from_fill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="From"
+        android:inputType="numberDecimal"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"/>
+
+    <EditText
+        android:id="@+id/range_to_fill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="To"
+        android:inputType="numberDecimal"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949" />
+
+    <Button
+        android:id="@+id/flightsearchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:backgroundTint="#9F9BBC"
+        android:textColor="#33204d"
+        android:onClick="onSearchButtonClick" />
+
+    <Button
+        android:id="@+id/help_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help"
+        android:onClick="onHelpButtonClick"
+        android:layout_gravity="start"
+        android:backgroundTint="#9F9BBC"
+        android:textColor="#33204d"
+        android:layout_marginTop="10dp" />
+
+
+</LinearLayout>

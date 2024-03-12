@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background_demo1"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"
+        android:inputType="textPassword" />
+
+    <!-- New EditText for Admin Code -->
+    <EditText
+        android:id="@+id/editTextAdminCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Admin Code"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#474973"
+        android:textColor="#FFFFFF"
+        android:text="Login as Admin" />
+
+</LinearLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_demo1">
+
+    <!-- Support Widgets (Replace with your widgets) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/trackContainer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:background="@drawable/plane2">
+
+        <!-- TextViews for Flight Info -->
+        <TextView
+            android:id="@+id/trackInfoTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text=""
+            android:textColor="#150e37"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ImageView and Flight Info Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/adContainer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/trackContainer"
+        android:layout_marginTop="25dp"
+        android:clickable="true"
+        android:background="@drawable/plane1">
+
+        <!-- TextViews for Flight Info -->
+        <TextView
+            android:id="@+id/flightInfoTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text=""
+            android:textColor="#150e37"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Buttons Section -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp">
+
+        <Button
+            android:id="@+id/previous_flights_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#9F9BBC"
+            android:text="Previous Flights"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/track_flight_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/previous_flights_button"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#9F9BBC"
+            android:text="Track Flight"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/book_flight_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/track_flight_button"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#9F9BBC"
+            android:text="Book Flight"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/help_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_flight_button"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#9F9BBC"
+            android:text="Help"
+            android:textColor="#FFFFFF" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

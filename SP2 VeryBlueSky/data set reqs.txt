@@ -1,0 +1,13 @@
+*date	
+	*by year, month, day
+	*day of week
+	day of month
+airline
+*from
+*to
+*delayed or not
+*expected departure time
+*actual departure time
+*delay in minutes (how much does it get delayed helpful for user)
+--------------------------------------------------------------------
+

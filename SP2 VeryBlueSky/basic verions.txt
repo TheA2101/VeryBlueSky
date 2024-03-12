@@ -1,0 +1,370 @@
+bookFlight
+package com.example.verybluesky_00
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+
+class BookFlight : AppCompatActivity() {
+
+    private lateinit var departureDateEditText: EditText
+    private lateinit var returnDateEditText: EditText
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_book_flight)
+
+        val BookUser = intent.getStringExtra("UserInputEmail")
+        val BookPass = intent.getStringExtra("UserInputPass")
+
+        departureDateEditText = findViewById(R.id.start_date)
+        returnDateEditText = findViewById(R.id.end_date)
+
+        val searchButton = findViewById<Button>(R.id.flightsearchButton)
+        searchButton.setOnClickListener {
+            if (validateRange()) {
+                val intent = Intent(this, FilteredFlightsActivity::class.java)
+                intent.putExtra("UserInputEmail", BookUser)
+                intent.putExtra("UserInputPass", BookPass)
+                intent.putExtra("startDate", departureDateEditText.text.toString())
+                intent.putExtra("endDate", returnDateEditText.text.toString())
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun validateRange(): Boolean {
+        /*val rangeFrom = findViewById<EditText>(R.id.range_from_fill).text.toString()
+        val rangeTo = findViewById<EditText>(R.id.range_to_fill).text.toString()
+
+        if (rangeFrom.isBlank() && rangeTo.isBlank()) {
+            showToast("No Range Entered")
+            return false
+        }
+
+        val rangeFromValue = rangeFrom.toDoubleOrNull()
+        val rangeToValue = rangeTo.toDoubleOrNull()
+
+        if (rangeFromValue == null || rangeToValue == null || rangeFromValue >= rangeToValue) {
+            showToast("Please enter a valid range")
+            return false
+        }*/
+
+        return true
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".BookFlight"
+    android:background="@drawable/background_demo1"
+    >
+
+    <EditText
+        android:id="@+id/from_fill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="From Airport"
+        android:inputType="text"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"/> <!-- You can adjust the color code as needed -->
+
+
+    <EditText
+        android:id="@+id/to_fill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="To Airport"
+        android:inputType="text"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"/>
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date:"
+        android:textSize="20sp"
+        android:textColor="#161B33"
+        android:layout_marginTop="20dp" />
+
+    <!-- ... Other layout elements ... -->
+    <EditText
+        android:id="@+id/start_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start From (e.g. MM/DD/YEAR)"
+        android:textSize="16sp"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/end_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="End At (e.g. MM/DD/YEAR)"
+        android:textSize="16sp"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"
+        android:layout_marginTop="8dp" />
+    <!-- ... Other layout elements ... -->
+
+
+    <TextView
+        android:id="@+id/textViewSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Range in USD:"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/range_from_fill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="From"
+        android:inputType="numberDecimal"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"/>
+
+    <EditText
+        android:id="@+id/range_to_fill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="To"
+        android:inputType="numberDecimal"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949" />
+
+    <Button
+        android:id="@+id/flightsearchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:backgroundTint="#9F9BBC"
+        android:textColor="#33204d"
+        android:onClick="onSearchButtonClick" />
+
+    <Button
+        android:id="@+id/help_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help"
+        android:onClick="onHelpButtonClick"
+        android:layout_gravity="start"
+        android:backgroundTint="#9F9BBC"
+        android:textColor="#33204d"
+        android:layout_marginTop="10dp" />
+
+
+</LinearLayout>
+---------------------------------
+FilteredFlightsActivity
+package com.example.verybluesky_00
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
+
+class FilteredFlightsActivity : AppCompatActivity() {
+
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_filtered_flights)
+
+        val tasksLayout = findViewById<LinearLayout>(R.id.tasksLayout)
+
+        // Fetch flight records from Firestore and display them in buttons
+        val db = FirebaseFirestore.getInstance()
+        val flightRecordsCollection = db.collection("Future flights")
+        flightRecordsCollection.get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val depDate = document.getString("departure date")
+                    val dest = document.getString("destination")
+                    val origin = document.getString("origin")
+                    val flightInfo = "Departure Date: $depDate\n$dest\n$origin"
+
+                    val button = Button(this)
+                    button.text = flightInfo
+                    button.setOnClickListener {
+                        openFlightDetail(flightInfo)
+                    }
+
+                    val layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                    layoutParams.setMargins(0, 0, 0, 16) // Optional: Add some margin between each button
+                    button.layoutParams = layoutParams
+
+                    tasksLayout.addView(button)
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Handle the failure gracefully
+                Log.e("FirestoreError", "Error fetching flight records: ${exception.message}")
+            }
+    }
+
+    private fun openFlightDetail(flightInfo: String) {
+        val intent = Intent(this, FlightDetail::class.java)
+        intent.putExtra("flightInfo", flightInfo)
+        startActivity(intent)
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/background_demo1"
+    tools:context=".FilteredFlightsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/tasksLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+</RelativeLayout>
+-----------------------------------
+FlightDetail
+package com.example.verybluesky_00
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.verybluesky_00.databinding.ActivityFlightDetailBinding
+
+class FlightDetail : AppCompatActivity() {
+    private lateinit var binding: ActivityFlightDetailBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityFlightDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val FlightUser = intent.getStringExtra("UserInputEmail")
+        val FlightPass = intent.getStringExtra("UserInputPass")
+
+        val departureDate = intent.getStringExtra("departureDate")
+        val departureTime = intent.getStringExtra("departureTime")
+        val destination = intent.getStringExtra("destination")
+        val origin = intent.getStringExtra("origin")
+        val price = intent.getStringExtra("price")
+
+        val flightInfo = "Departure Date: $departureDate\n" +
+                "Departure Time: $departureTime\n" +
+                "Destination: $destination\n" +
+                "Origin: $origin\n" +
+                "Price: $price USD"
+
+        binding.flightInfoTextView.text = flightInfo
+
+        binding.bookButton.setOnClickListener {
+            val enteredEmail = binding.emailEditText.text.toString()
+            val enteredPassword = binding.passwordEditText.text.toString()
+
+            if (enteredEmail == FlightUser && enteredPassword == FlightPass) {
+                showToast("Email and password match!")
+            } else {
+                showToast("Email or Password don't match!")
+            }
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+}
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_demo1"
+    android:padding="16dp">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <TextView
+        android:id="@+id/flightInfoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#161B33"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="#666666"
+        android:textColor="#4a4949"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/bookButton"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#9F9BBC"
+        android:text="Book"
+        android:textColor="#ffffff" />
+
+</LinearLayout>
+
+

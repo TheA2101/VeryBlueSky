@@ -1,0 +1,6 @@
+amathyst smoke		|9F9BBC
+mercury			|E2E2E2
+silver chalice 		|ABABAB
+blues			|474973
+			|161B33
+			|0D0C1D
